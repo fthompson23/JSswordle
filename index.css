@@ -1,0 +1,23 @@
+#table{
+  height: 400px;
+  width: 400px;
+  background-color:#107000;
+  outline: #050505 10px solid;
+  padding: 2px;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 2px;
+}
+
+.box{
+  width:16%;
+  height:16%;
+  background-color:#eeeeee;
+  border-radius: 20%;
+  margin: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
