@@ -1,3 +1,17 @@
+function compareWord(word, userWord) {
+    let correctedWord = ""
+    for (i = 0; i < word.length; i++) {
+        if (word.slice(i, i+1) === userWord.slice(i, i+1)) {
+            correctedWord += "@"
+        } else if (word.includes(userWord.slice(i, i+1))) {
+            correctedWord += "!"
+        } else {
+            correctedWord += "*"
+        }
+    }
+    return correctedWord
+}
+
 let request = new XMLHttpRequest();
 request.open("GET", "./dictionary.json", false);
 request.send(null)
@@ -16,11 +30,14 @@ window.addEventListener("keydown", function (event) {
     }
 }, true);
 document.getElementById('button').onclick = function() {
-    if (userInput.length === 6 && userInput === wordleWord) {
+    if (!(words.includes(userInput.toLowerCase()))) {
+        alert("not a real word")
+    } else if (userInput.length === 6 && userInput === wordleWord) {
         alert("correct");
     } else if (userInput.length !== 6) {
         alert("Must be a 6 letter word");
     } else {
+        console.log(compareWord(wordleWord, userInput));
         alert("wrong");
     }
 };
