@@ -1,6 +1,6 @@
 window.addEventListener("load", (event) => {
 /////// INIT //////
-
+console.log("display.js loaded");
 //the row size CSS for boxes is NOT dynamic, so if you want to change these values you'll have to change that too
 var columns = 6; //determines the number of boxes on the screen, should be equal to word length
 var rows = 6; //determines the number of rows on screen
