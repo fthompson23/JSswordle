@@ -1,14 +1,9 @@
-async function word() {
-    let request = new Request('https://random-word-api.herokuapp.com/word?length=6', {
-        method: 'GET'
-    });
-    let result = await fetch(request);
-    let apiResponse = await result.json();
-
-    return(apiResponse)
-}
+let request = new XMLHttpRequest();
+request.open("GET", "./dictionary.json", false);
+request.send(null)
+let words = Object.keys(JSON.parse(request.responseText));
+let wordleWord = words[Math.floor(Math.floor(Math.random()*words.length))].toUpperCase();
 let userInput = "";
-let wordleWord = word().toLocaleString().toUpperCase()
 console.log(wordleWord);
 window.addEventListener("keydown", function (event) {
     if ((event.key.match(/^[A-Za-z]+$/)) && event.key.length === 1) {
@@ -20,9 +15,12 @@ window.addEventListener("keydown", function (event) {
         document.getElementById("userText").innerHTML = userInput;
     }
 }, true);
-if(document.getElementById("button").clicked === true)
-{
-    if (userInput === wordleWord) {
-        console.log("correct");
+document.getElementById('button').onclick = function() {
+    if (userInput.length === 6 && userInput === wordleWord) {
+        alert("correct");
+    } else if (userInput.length !== 6) {
+        alert("Must be a 6 letter word");
+    } else {
+        alert("wrong");
     }
-}
+};
