@@ -42,18 +42,16 @@ window.addEventListener("load", (event) => {
 //actual code
     addBoxes();
 
-    function compareWord(word, userWord) {
-        let correctedWord = ""
+    function compareWord(word, userWord, row) {
         for (i = 0; i < word.length; i++) {
             if (word.slice(i, i+1) === userWord.slice(i, i+1)) {
-                correctedWord += "@"
+                changeColor(row.toString()+(i.toString()), "00FF00")
             } else if (word.includes(userWord.slice(i, i+1))) {
-                correctedWord += "!"
+                changeColor(row.toString()+(i.toString()), "FFFF00")
             } else {
-                correctedWord += "*"
+                changeColor(row.toString()+(i.toString()), "FF0000")
             }
         }
-        return correctedWord
     }
     function clearRow(row) {
         for (i = 0; i < columns; i++) {
@@ -94,11 +92,12 @@ window.addEventListener("load", (event) => {
         if (!(words.includes(userInput.toLowerCase()))) {
             alert("not a real word")
         } else if (userInput === wordleWord) {
+            compareWord(wordleWord, userInput, row)
             alert("correct");
         } else if (userInput.length !== 6) {
             alert("Must be a 6 letter word");
         } else {
-            dispOut(compareWord(wordleWord, userInput), row)
+            compareWord(wordleWord, userInput, row)
             row++;
             userInput = "";
             alert("wrong");
