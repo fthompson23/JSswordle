@@ -20,4 +20,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 30px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+}
+
+#button {
+  margin: 20px;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
 }
