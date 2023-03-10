@@ -1,14 +1,13 @@
 #table{
   height: 400px;
   width: 400px;
-  background-color:#107000;
+  background-color: #383838;
   outline: #050505 10px solid;
   padding: 2px;
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 2px;
 }
 
 .box{
@@ -25,14 +24,15 @@
 
 .center {
   margin: auto;
-  width: 50%;
+  width: 29%;
   padding: 10px;
   text-align: center;
+  font-family: Helvetica, serif;
 }
 
 #button {
   margin: 20px;
-  background-color: #4CAF50;
+  background-color: #383838;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -40,3 +40,4 @@
   display: inline-block;
   font-size: 16px;
 }
+

@@ -71,9 +71,13 @@ window.addEventListener("load", (event) => {
     request.open("GET", "./dictionary.json", false);
     request.send(null)
     let words = Object.keys(JSON.parse(request.responseText));
+    request = new XMLHttpRequest();
+    request.open("GET", "./dictionaryUsedWords.json", false);
+    request.send(null)
+    let wordsUsed = Object.keys(JSON.parse(request.responseText));
 
 // gets a random word from the array
-    let wordleWord = words[Math.floor(Math.floor(Math.random()*words.length))].toUpperCase();
+    let wordleWord = wordsUsed[Math.floor(Math.floor(Math.random()*wordsUsed.length))].toUpperCase();
     let userInput = "";
     let row = 0;
     console.log(wordleWord);
@@ -93,14 +97,12 @@ window.addEventListener("load", (event) => {
             alert("not a real word")
         } else if (userInput === wordleWord) {
             compareWord(wordleWord, userInput, row)
-            alert("correct");
         } else if (userInput.length !== 6) {
             alert("Must be a 6 letter word");
         } else {
             compareWord(wordleWord, userInput, row)
             row++;
             userInput = "";
-            alert("wrong");
         }
     };
 });
