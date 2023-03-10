@@ -39,7 +39,7 @@ window.addEventListener("load", () => {
     function changeColor(boxID, color){
         $("#box"+boxID).css("background-color", "#"+color);
     }
-//actual code
+    //actual code
     addBoxes();
 
     function compareWord(word, userWord, row) {
@@ -105,6 +105,9 @@ window.addEventListener("load", () => {
             compareWord(wordleWord, userInput, row)
             row++;
             userInput = "";
+            if (row === 6) {
+                alert("you lost")
+            }
         }
     };
 });
