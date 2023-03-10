@@ -1,13 +1,13 @@
 window.addEventListener("load", () => {
-/////// INIT //////
+    /////// INIT //////
     console.log("display.js loaded");
-//the row size CSS for boxes is NOT dynamic, so if you want to change these values you'll have to change that too
+    //the row size CSS for boxes is NOT dynamic, so if you want to change these values you'll have to change that too
     var columns = 6; //determines the number of boxes on the screen, should be equal to word length
     var rows = 6; //determines the number of rows on screen
     var $boxes = []; //stores the CSS id of every box
 
-//box class
-//the CSS ID of each individual box is two numbers, the first the row and the second for the column
+    //box class
+    //the CSS ID of each individual box is two numbers, the first the row and the second for the column
     class Box {
         constructor(row, column){
             //row and column are 0 indexed
@@ -27,15 +27,15 @@ window.addEventListener("load", () => {
         console.log("Created boxes." );
     }
 
-//Adds the given string to the given box, only named addCharacter because of functionality
-// boxID: int in the [xy] format, where x is the row and y is the column
+    //Adds the given string to the given box, only named addCharacter because of functionality
+    // boxID: int in the [xy] format, where x is the row and y is the column
     function addCharacter(boxID, string) {
         $("#box"+boxID.toString()).append("<p>"+string+"</p>");
     }
 
-//changes the color of the given box
-// boxID: in [xy] format
-//color: hex value
+    //changes the color of the given box
+    // boxID: in [xy] format
+    //color: hex value
     function changeColor(boxID, color){
         $("#box"+boxID).css("background-color", "#"+color);
     }
@@ -66,22 +66,23 @@ window.addEventListener("load", () => {
         }
     }
 
-// parses the json and converts into array
+    // parses the json and converts into array. Used to check if user input is a real word
     let request = new XMLHttpRequest();
     request.open("GET", "./dictionary.json", false);
     request.send(null)
     let words = Object.keys(JSON.parse(request.responseText));
+    // same but for the json that contains the words the game will use as the word to guess. Smaller list with only common words
     request = new XMLHttpRequest();
     request.open("GET", "./dictionaryUsedWords.json", false);
     request.send(null)
     let wordsUsed = Object.keys(JSON.parse(request.responseText));
 
-// gets a random word from the array
+    // gets a random word from the array
     let wordleWord = wordsUsed[Math.floor(Math.floor(Math.random()*wordsUsed.length))].toUpperCase();
     let userInput = "";
     let row = 0;
     console.log(wordleWord);
-// checks when key pressed, filters input, and modifies userinput
+    // checks when key pressed, filters input, and modifies userinput
     window.addEventListener("keydown", function (event) {
         if (((userInput.length < 6) && event.key.match(/^[A-Za-z]+$/)) && event.key.length === 1) {
             userInput += event.key.toUpperCase();
@@ -92,6 +93,7 @@ window.addEventListener("load", () => {
             dispOut(userInput, row);
         }
     }, true);
+    //checks user word
     document.getElementById('button').onclick = function() {
         if (!(words.includes(userInput.toLowerCase()))) {
             alert("not a real word")
