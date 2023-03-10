@@ -1,4 +1,4 @@
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
 /////// INIT //////
     console.log("display.js loaded");
 //the row size CSS for boxes is NOT dynamic, so if you want to change these values you'll have to change that too
